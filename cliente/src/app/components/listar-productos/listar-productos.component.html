@@ -1,0 +1,61 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">LISTADO DE PRODUCTOS</span>
+          <button
+            class="btn btn-success float-end"
+            routerLink="/crear-producto"
+          >
+            Nuevo Producto
+          </button>
+          <button
+            class="btn btn-primary float-end mx-2"
+            routerLink="/listado-marcas"
+          >
+            Listado de Marcas
+          </button>
+          <table
+            *ngIf="listProductos.length > 0"
+            class="table table-striped mt-5"
+          >
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Talla</th>
+                <th scope="col">Observaciones</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Cant</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let producto of listProductos">
+                <td>{{ producto.id }}</td>
+                <td>{{ producto.descripcion }}</td>
+                <td>{{ producto.talla }}</td>
+                <td>{{ producto.observaciones }}</td>
+                <td>
+                  {{ producto.Marca ? producto.Marca.nombre : "Desconocida" }}
+                </td>
+                <td>{{ producto.cantidad_inventario }}</td>
+                <td>
+                  <i  [routerLink]="['editar-producto', producto.id]" class="fa-solid fa-pen-to-square text-primary"></i>
+                  <i
+                    (click)="eliminarProducto(producto.id)"
+                    class="fa-solid fa-trash text-danger"
+                  ></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h5 *ngIf="listProductos.length == 0">
+            No hay productos para mostrar
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

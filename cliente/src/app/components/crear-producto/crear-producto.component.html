@@ -1,0 +1,126 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">{{ titulo | uppercase }}</span>
+          <form
+            class="mt-5"
+            [formGroup]="productoForm"
+            (ngSubmit)="agregarProducto()"
+          >
+            <div class="mb-3">
+              <input
+                formControlName="descripcion"
+                type="text"
+                class="form-control form-control-lg"
+                placeholder="Descripcion"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  productoForm.get('descripcion')?.hasError('required') &&
+                  productoForm.get('descripcion')?.touched
+                "
+              >
+                <span> La descripcion es Requerida </span>
+              </div>
+            </div>
+						<div class="mb-3">
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                formControlName="talla"
+              >
+							<option  value=""> Seleccione una talla </option>
+                <option  *ngFor="let tallas of listTalla" value="{{ tallas }}">
+                  {{ tallas }}
+                </option>
+              </select>
+              <div
+                class="text-danger"
+                *ngIf="
+                  productoForm.get('marca')?.hasError('required') &&
+                  productoForm.get('marca')?.touched
+                "
+              >
+                <span> La Marca es requerida </span>
+              </div>
+            </div>
+						<div class="mb-3">
+              <input
+                formControlName="observaciones"
+                type="text"
+                class="form-control form-control-lg"
+                placeholder="Observaciones"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  productoForm.get('observaciones')?.hasError('required') &&
+                  productoForm.get('observaciones')?.touched
+                "
+              >
+                <span> Las observaciones son Obligatorias </span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                formControlName="marca"
+              >
+							<option  value=""> Seleccione una marca </option>
+							
+                <option
+                  *ngFor="let marcas of listMarcas"
+                  value="{{ marcas.id }}"
+                >
+                  {{ marcas.nombre }}
+                </option>
+              </select>
+              <div
+                class="text-danger"
+                *ngIf="
+                  productoForm.get('marca')?.hasError('required') &&
+                  productoForm.get('marca')?.touched
+                "
+              >
+                <span> La Marca es requerida </span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input
+                formControlName="cantidad_inventario"
+                type="number"
+                class="form-control form-control-lg"
+                placeholder="Cantidad Inventario"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  productoForm.get('cantidad_inventario')?.hasError('required') &&
+                  productoForm.get('cantidad_inventario')?.touched
+                "
+              >
+                <span> La cantidad es Obligatoria </span>
+              </div>
+							
+            </div>
+            <button class="btn btn-secondary btn-lg float-start" routerLink="/">
+              Volver
+            </button>
+            <button
+              class="btn btn-success btn-lg float-end"
+              [disabled]="productoForm.invalid"
+              type="submit"
+            >
+              Aceptar
+            </button>
+          </form>
+          <div class="mb-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

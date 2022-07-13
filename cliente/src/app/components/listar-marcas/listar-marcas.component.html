@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">LISTADO DE MARCAS</span>
+          <button class="btn btn-secondary float-end" routerLink="/">
+            Volver
+          </button>
+          <button
+            class="btn btn-success float-end mx-2"
+            routerLink="/crear-marca"
+          >
+            Nuevo Marca
+          </button>
+          <table *ngIf="listMarcas.length > 0" class="table table-striped mt-5">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let marcas of listMarcas">
+                <td>{{ marcas.id }}</td>
+                <td>{{ marcas.nombre }}</td>
+                <td>
+                  <i
+                    [routerLink]="['/editar-marca', marcas.id]"
+                    class="fa-solid fa-pen-to-square text-primary"
+                  ></i>
+                  <i
+                    (click)="eliminarMarca(marcas.id)"
+                    class="fa-solid fa-trash text-danger"
+                  ></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h5 *ngIf="listMarcas.length == 0">No hay productos para mostrar</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
